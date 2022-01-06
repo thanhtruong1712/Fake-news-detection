@@ -1,2 +1,6 @@
 nltk==3.6.7
-nltk.download('punkt')
+
+pip
+tensorflow
+streamlit==1.3.1
+pickle5
