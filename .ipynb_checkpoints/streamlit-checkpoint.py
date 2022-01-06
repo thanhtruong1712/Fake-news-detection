@@ -1,22 +1,19 @@
-import sys
 import streamlit as st
-import pickle5 as pickle
+import pickle
+# import pickle5 as pickle
 import re
 import string
 import pandas as pd
 import numpy as np
-import nltk
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from tensorflow.keras.models import Model, load_model
-from tqdm import tqdm, tqdm_notebook
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 regex = re.compile('[%s]' % re.escape(string.punctuation))
 wordnet = WordNetLemmatizer()
 token_file = 'tokenizer.pickle'
-model_filelist = [r"models/LSTM_model_1.h5",r"models/GBC_model.pkl"]
 model_list = ["Logistic Regression", "Gradient Boost Classifier"]
 with open(token_file,'rb') as f:
     tokenizer = pickle.load(f)
