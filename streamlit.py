@@ -62,7 +62,7 @@ def preprocessing_basic(text):
 
 if __name__ == '__main__':
     st.title('Fake news detection')
-    st.write('Hello')
+#     st.write('')
     sentence = st.text_area("Enter your news content here", height = 200)
     model_choice = st.selectbox("Select model", model_list)
     predict_btn = st.button("Predict")
