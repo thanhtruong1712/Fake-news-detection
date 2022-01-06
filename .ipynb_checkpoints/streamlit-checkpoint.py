@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
-# import pickle5 as pickle
+import pickle5 as pickle
+nltk.download('punkt')
 import re
 import string
 import pandas as pd
