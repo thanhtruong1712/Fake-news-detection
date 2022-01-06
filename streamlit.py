@@ -3,6 +3,8 @@ import pickle
 import pickle5 as pickle
 import nltk
 nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 import re
 import string
 import pandas as pd
