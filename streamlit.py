@@ -69,7 +69,7 @@ if __name__ == '__main__':
     predictions = []
     
     if predict_btn:
-        if sentence = "":
+        if sentence == "":
             st.error("")
         else:
             clean_text = []
