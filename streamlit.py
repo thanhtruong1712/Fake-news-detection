@@ -18,17 +18,17 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 regex = re.compile('[%s]' % re.escape(string.punctuation))
 wordnet = WordNetLemmatizer()
 token_file = 'tokenizer.pickle'
-model_list = ["Logistic Regression", "Gradient Boost Classifier", "Multinomial Naive Bayes", "Bernoulli Naive Bayes", "Decision Trees", "Random Forest Classifier"]
+model_list = ["Long Short Term Memory(LSTM)", "Logistic Regression", "Gradient Boost Classifier",
+              "Multinomial Naive Bayes", "Bernoulli Naive Bayes", "Decision Trees", "Random Forest Classifier"]
 with open(token_file,'rb') as f:
     tokenizer = pickle.load(f)
     
 @st.cache(allow_output_mutation = True)
-
-# def Load_model(model_file):
-#     model = load_model(model_file)
-#     model.make_predict_function()
-#     model.summary()
-#     return model
+def Load_model(model_file):
+    model = load_model(model_file)
+    model.make_predict_function()
+    model.summary()
+    return model
     
 def get_stopword_list(filename):
     with open(filename,'r',encoding = 'utf-8') as f:
@@ -81,6 +81,11 @@ if __name__ == '__main__':
                 model = pickle.load(open(r"models/LR_model.pkl",'rb'))
                 prediction = model.predict(clean_text)[0]
                 predictions.append(prediction)
+                
+            elif model_choice == 'Long Short Term Memory(LSTM)':
+                model = Load_model(r"models/LSTM_model.h5")
+                prediction = model.predict(data)
+                predictions = prediction.argmax(axis = -1)
 
             elif model_choice == 'Gradient Boost Classifier':
                 model = pickle.load(open(r"models/GBC_model.pkl",'rb'))
