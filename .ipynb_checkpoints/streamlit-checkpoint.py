@@ -69,22 +69,25 @@ if __name__ == '__main__':
     predictions = []
     
     if predict_btn:
-        clean_text = []
-        i = preprocessing_basic(sentence)
-        clean_text.append(i)
-        sequences = tokenizer.texts_to_sequences(clean_text)
-        data = pad_sequences(sequences, padding= 'post', maxlen = 200)
-        if model_choice == 'Logistic Regression':
-            model = pickle.load(open(r"models/LR_model.pkl",'rb'))
-            prediction = model.predict(clean_text)[0]
-            predictions.append(prediction)
-            
-        elif model_choice == 'Gradient Boost Classifier':
-            model = pickle.load(open(r"models/GBC_model.pkl",'rb'))
-            prediction = model.predict(clean_text)[0]
-            predictions.append(prediction)
-            
-        if predictions[0] == 0:
-            st.success('This is a real news')
-        if predictions[0] == 1:
-            st.warning('This is a fake news')
+        if sentence = '':
+            st.error("")
+        else:
+            clean_text = []
+            i = preprocessing_basic(sentence)
+            clean_text.append(i)
+            sequences = tokenizer.texts_to_sequences(clean_text)
+            data = pad_sequences(sequences, padding= 'post', maxlen = 200)
+            if model_choice == 'Logistic Regression':
+                model = pickle.load(open(r"models/LR_model.pkl",'rb'))
+                prediction = model.predict(clean_text)[0]
+                predictions.append(prediction)
+
+            elif model_choice == 'Gradient Boost Classifier':
+                model = pickle.load(open(r"models/GBC_model.pkl",'rb'))
+                prediction = model.predict(clean_text)[0]
+                predictions.append(prediction)
+
+            if predictions[0] == 0:
+                st.success('This is a real news')
+            if predictions[0] == 1:
+                st.warning('This is a fake news')
