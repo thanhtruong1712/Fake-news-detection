@@ -18,7 +18,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 regex = re.compile('[%s]' % re.escape(string.punctuation))
 wordnet = WordNetLemmatizer()
 token_file = 'tokenizer.pickle'
-model_list = ["Logistic Regression", "Gradient Boost Classifier"]
+model_list = ["Logistic Regression", "Gradient Boost Classifier", "Multinomial Naive Bayes", "Bernoulli Naive Bayes", "Decision Trees", "Random Forest Classifier"]
 with open(token_file,'rb') as f:
     tokenizer = pickle.load(f)
     
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     
     if predict_btn:
         if sentence == "":
-            st.error("")
+            st.error("Please enter your news content")
         else:
             clean_text = []
             i = preprocessing_basic(sentence)
@@ -84,6 +84,26 @@ if __name__ == '__main__':
 
             elif model_choice == 'Gradient Boost Classifier':
                 model = pickle.load(open(r"models/GBC_model.pkl",'rb'))
+                prediction = model.predict(clean_text)[0]
+                predictions.append(prediction)
+                
+            elif model_choice == 'Multinomial Naive Bayes':
+                model = pickle.load(open(r"models/GBC_model.pkl",'rb'))
+                prediction = model.predict(clean_text)[0]
+                predictions.append(prediction)
+                
+            elif model_choice == 'Bernoulli Naive Bayes':
+                model = pickle.load(open(r"models/BNB_model.pkl",'rb'))
+                prediction = model.predict(clean_text)[0]
+                predictions.append(prediction)
+                
+            elif model_choice == 'Decision Trees':
+                model = pickle.load(open(r"models/DTs_model.pkl",'rb'))
+                prediction = model.predict(clean_text)[0]
+                predictions.append(prediction)
+                
+            elif model_choice == 'Random Forest Classifier':
+                model = pickle.load(open(r"models/RFC_model.pkl",'rb'))
                 prediction = model.predict(clean_text)[0]
                 predictions.append(prediction)
 
